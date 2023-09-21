@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de Exemplo</title>
+</head>
+
+<body>
+    <h1>Formulário de Exemplo</h1>
+    <form id="meuForm" onsubmit="exibirDados(event)" method="post"> <!-- method="get" action="indexJS.html"> -->
+        <label for="campoTexto">Campo de Texto:</label>
+        <input type="text" id="campoTexto" name="campoTexto"><br>
+
+        <label for="campoNumero">Campo Numérico:</label>
+        <input type="number" id="campoNumero" name="campoNumero"><br>
+
+        <label for="campoURL">Campo URL:</label>
+        <input type="url" id="campoURL" name="campoURL"><br>
+
+        <label for="campoBusca">Campo de Busca:</label>
+        <input type="search" id="campoBusca" name="campoBusca"><br>
+
+        <label for="campoEmail">Campo de Email:</label>
+        <input type="email" id="campoEmail" name="campoEmail"><br>
+
+        <label>Opções de Radio:</label>
+        <input type="radio" id="opcao1" name="opcao" value="Opção 1">
+        <label for="opcao1">Opção 1</label>
+        <input type="radio" id="opcao2" name="opcao" value="Opção 2">
+        <label for="opcao2">Opção 2</label><br>
+
+        <label>Opções de Checkbox:</label>
+        <input type="checkbox" id="checkbox1" name="checkbox1" value="Valor 1">
+        <label for="checkbox1">Valor 1</label>
+        <input type="checkbox" id="checkbox2" name="checkbox2" value="Valor 2">
+        <label for="checkbox2">Valor 2</label><br>
+
+        <label for="campoDataHora">Campo de Data e Hora:</label>
+        <input type="datetime-local" id="campoDataHora" name="campoDataHora"><br>
+
+        <label for="selecionarOpcao">Selecionar Opção:</label>
+        <select id="selecionarOpcao" name="selecionarOpcao">
+            <option value="opcao1">Opção 1</option>
+            <option value="opcao2">Opção 2</option>
+            <option value="opcao3">Opção 3</option>
+        </select><br>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <h2>Dados Recebidos:</h2>
+    <div id="dadosExibidos"></div>
+
+    <script>
+        function exibirDados(event) {
+            event.preventDefault();
+
+            const form = document.getElementById('meuForm');
+            const dadosExibidos = document.getElementById('dadosExibidos');
+
+            const formData = new FormData(form);
+            const dados = {};
+
+            formData.forEach((value, key) => {
+                dados[key] = value;
+            });
+
+            dadosExibidos.textContent = JSON.stringify(dados, null, 2);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de Envio</title>
+</head>
+
+<body>
+    <h1>Formulário de Envio</h1>
+    <form id="meuForm">
+        <label for="campoTexto">Campo de Texto:</label>
+        <input type="text" id="campoTexto" name="campoTexto"><br>
+
+        <label for="campoNumero">Campo Numérico:</label>
+        <input type="number" id="campoNumero" name="campoNumero"><br>
+
+        <!-- Adicione outros campos aqui conforme necessário -->
+
+        <input type="button" value="Enviar" onclick="enviarDados()">
+    </form>
+
+    <script>
+        function enviarDados() {
+            const form = document.getElementById('meuForm');
+            const formData = new FormData(form);
+
+            const jsonData = {};
+
+            formData.forEach((value, key) => {
+                jsonData[key] = value;
+            });
+
+            // Armazenar os dados no LocalStorage
+            localStorage.setItem('dadosFormulario', JSON.stringify(jsonData));
+
+            // Redirecionar para a segunda página
+            window.location.href = 'receberDadosJS.html';
+        }
+    </script>
+</body>
+
+</html>

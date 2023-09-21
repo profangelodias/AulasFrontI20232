@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dados Recebidos</title>
+</head>
+
+<body>
+    <h1>Dados Recebidos</h1>
+    <div id="dadosRecebidos"></div>
+
+    <script>
+        const dadosRecebidos = document.getElementById('dadosRecebidos');
+
+        // Receber os dados armazenados no LocalStorage
+        document.addEventListener('DOMContentLoaded', function () {
+            const jsonData = localStorage.getItem('dadosFormulario');
+
+            if (jsonData) {
+                const formData = JSON.parse(jsonData);
+
+                // Exibir os dados na página
+                for (const key in formData) {
+                    if (formData.hasOwnProperty(key)) {
+                        const p = document.createElement('p');
+                        p.innerHTML = `<strong>${key}:</strong> ${formData[key]}`;
+                        dadosRecebidos.appendChild(p);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
